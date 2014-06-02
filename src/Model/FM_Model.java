@@ -31,12 +31,12 @@ public class FM_Model {
 	public void init() {
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_leftPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8) , i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+				_leftPlayField[j][i] = new Square(j*(_squareSize + 5) + ((_screenWidth/4)-(_squareSize*2)) , i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8*5), i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + ((_screenWidth/4*3)-(_squareSize*2))-10, i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
 	}
@@ -61,12 +61,12 @@ public class FM_Model {
 		_squareSize = size;
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_leftPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8) , i*(_squareSize + 5), _squareSize, _leftPlayField[j][i].getColor()); 
+				_leftPlayField[j][i] = new Square(j*(_squareSize + 5) + ((_screenWidth/4)-(_squareSize*2))-10 , i*(_squareSize + 5), _squareSize, _leftPlayField[j][i].getColor()); 
 			}
 		}
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8*5) , i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + ((_screenWidth/4*3)-(_squareSize*2))-10 , i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
 	}
