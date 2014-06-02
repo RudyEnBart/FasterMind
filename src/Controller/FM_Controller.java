@@ -1,9 +1,11 @@
 package Controller;
 
+import java.awt.event.MouseListener;
+
 import Model.FM_Model;
 import View.FM_View;
 
-public class FM_Controller {
+public class FM_Controller implements MouseListener{
 	private FM_Model model;
 	private FM_View view;
 	

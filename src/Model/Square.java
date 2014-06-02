@@ -46,6 +46,14 @@ public class Square {
 		return _color;
 	}
 	
+	public void setX(int x) {
+		_posX = x;
+	}
+	
+	public void setY(int y) {
+		_posY = y;
+	}
+	
 	public void setColor(Color c) {
 		_color = c;
 	}

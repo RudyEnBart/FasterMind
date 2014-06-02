@@ -4,7 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class FM_Model {
-	private ArrayList<Square> _squareList = new ArrayList<>();
+	private Square[][] _squareArray = new Square[4][10];
+	private Square[][] _squareArray2 = new Square[4][10];
 	private ArrayList<Color> _colorList = new ArrayList<>();
 	private final int GRIDSIZE = 10;
 	private final int AMOUNTOFSQUARES = 4;
@@ -26,7 +27,12 @@ public class FM_Model {
 	public void init() {
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_squareList.add(new Square( + j*(_squareSize + 5), i*(_squareSize + 5), _squareSize, _colorList.get(0)));
+				_squareArray[j][i] = new Square(j*(_squareSize + 5), i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+			}
+		}
+		for (int i = 0; i < GRIDSIZE; i++) {
+			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
+				_squareArray2[j][i] = new Square(j*(_squareSize + 5) + _squareSize * 10, i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
 	}
@@ -38,14 +44,26 @@ public class FM_Model {
 		return _colorList;
 	}
 	
-	public ArrayList<Square> getSquareList() {
-		return _squareList;
+	public Square[][] getSquareArray() {
+		return _squareArray;
+	}
+	
+	public Square[][] getSquareArray2() {
+		return _squareArray2;
 	}
 	
 	public void setSquareSize(int size) {
+		int oldSize = _squareSize;
 		_squareSize = size;
-		for (Square s: _squareList) {
-			s.setSize(size);
+		for (int i = 0; i < GRIDSIZE; i++) {
+			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
+				_squareArray[j][i] = new Square(j*(_squareSize + 5), i*(_squareSize + 5), _squareSize, _squareArray[j][i].getColor()); 
+			}
+		}
+		for (int i = 0; i < GRIDSIZE; i++) {
+			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
+				_squareArray2[j][i] = new Square(j*(_squareSize + 5) + _squareSize * 20, i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+			}
 		}
 	}
 }
