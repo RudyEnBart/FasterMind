@@ -12,7 +12,9 @@ public class FM_Model {
 	private final int GRIDSIZE = 10;
 	private final int AMOUNTOFSQUARES = 4;
 	private int _squareSize = 50;
-	
+	private int _screenWidth;
+	private int _screenHeight;
+
 	public FM_Model() {
 		_colorList.add(Color.GRAY);
 		_colorList.add(Color.BLACK);
@@ -29,7 +31,7 @@ public class FM_Model {
 	public void init() {
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_leftPlayField[j][i] = new Square(j*(_squareSize + 5), i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+				_leftPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8) , i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
 		for (int i = 0; i < GRIDSIZE; i++) {
@@ -69,7 +71,7 @@ public class FM_Model {
 		_squareSize = size;
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_leftPlayField[j][i] = new Square(j*(_squareSize + 5), i*(_squareSize + 5), _squareSize, _leftPlayField[j][i].getColor()); 
+				_leftPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8) , i*(_squareSize + 5), _squareSize, _leftPlayField[j][i].getColor()); 
 			}
 		}
 		for (int i = 0; i < GRIDSIZE; i++) {
@@ -78,4 +80,21 @@ public class FM_Model {
 			}
 		}
 	}
+	
+	public int get_screenWidth() {
+		return _screenWidth;
+	}
+
+	public void set_screenWidth(int _screenWidth) {
+		this._screenWidth = _screenWidth;
+	}
+
+	public int get_screenHeight() {
+		return _screenHeight;
+	}
+
+	public void set_screenHeight(int _screenHeight) {
+		this._screenHeight = _screenHeight;
+	}
+
 }
