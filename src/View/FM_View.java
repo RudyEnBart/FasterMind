@@ -37,15 +37,21 @@ public class FM_View extends JPanel {
 		_screenWidth = frame.getWidth();
 		_screenHeight = frame.getHeight();
 		model.setSquareSize(_screenHeight / 14);
-		for (Square[] sArray : model.getSquareArray()) {
+		for (Square[] sArray : model.getLeftPlayField()) {
 			for (Square s : sArray) {
 				s.draw(g);
 			}
 		}
-		for (Square[] sArray : model.getSquareArray2()) {
+		for (Square[] sArray : model.getRightPlayField()) {
 			for (Square s : sArray) {
 				s.draw(g);
 			}
+		}
+		for (Square s : model.getLeftPlayer()) {
+			s.draw(g);
+		}
+		for (Square s : model.getRightPlayer()) {
+			s.draw(g);
 		}
 	}
 }

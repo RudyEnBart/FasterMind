@@ -2,6 +2,7 @@ package Model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class Square {
 	private int _posX;
@@ -9,21 +10,43 @@ public class Square {
 	private int _width;
 	private int _height;
 	private Color _color;
-	
-	// create a square with the required arguments
-	public Square(int x, int y, int size, Color c) {
+	private int _colorIndex;
+	private ArrayList<Color> _colorList = new ArrayList<>();
+
+	public Square(int x, int y, int size) {
 		_posX = x;
 		_posY = y;
 		_width = size;
 		_height = size;
-		_color = c;
+		_colorList.add(Color.GRAY);
+		_colorList.add(Color.BLACK);
+		_colorList.add(Color.WHITE);
+		_colorList.add(Color.RED);
+		_colorList.add(Color.ORANGE);
+		_colorList.add(Color.YELLOW);
+		_colorList.add(Color.GREEN);
+		_colorList.add(Color.BLUE);
+		_colorList.add(Color.MAGENTA);
+		_color = _colorList.get(0);
+		_colorIndex = 0;
 	}
+
+	public Square(int x, int y, int size, Color c) {
+		this(x, y, size);
+		_color = c;
+		_colorIndex = _colorList.indexOf(c);
+	}
+	
 	
 	public void draw(Graphics g) {
 		Color temp = g.getColor();
 		g.setColor(_color);
 		g.fillRect(_posX, _posY, _width, _height);
 		g.setColor(temp);
+	}
+	
+	public void changeColor() {
+		_color = _colorList.get(++_colorIndex);
 	}
 	
 	public int getX() {
@@ -56,10 +79,15 @@ public class Square {
 	
 	public void setColor(Color c) {
 		_color = c;
+		_colorIndex = _colorList.indexOf(c);
 	}
 	
 	public void setSize(int size) {
 		_width = size;
 		_height = size;
+	}
+	
+	public ArrayList<Color> getColorList() {
+		return _colorList;
 	}
 }
