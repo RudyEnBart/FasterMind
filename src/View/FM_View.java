@@ -3,6 +3,7 @@ package View;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +17,7 @@ public class FM_View extends JPanel {
 	private JFrame frame;
 	private int _screenWidth;
 	private int _screenHeight;
-	JButton button = new JButton("Submit");
+	public JButton button = new JButton("Submit");
 	
 	public FM_View(FM_Model model) {
 		this.model = model;
@@ -61,5 +62,9 @@ public class FM_View extends JPanel {
 		int height = 50;
 
 		button.setBounds(_screenWidth/2 - width/2, _screenHeight/8*7 , width, height);
+	}
+	
+	public void addButtonListener(ActionListener a){
+		button.addActionListener(a);
 	}
 }
