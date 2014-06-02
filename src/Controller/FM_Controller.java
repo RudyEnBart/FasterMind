@@ -16,6 +16,7 @@ public class FM_Controller implements MouseListener, ActionListener{
 	public FM_Controller(FM_Model model, FM_View view) {
 		this.model = model;
 		this.view = view;
+		view.addMouseListener(this);
 		view.addButtonListener(this);
 	}
 
@@ -39,15 +40,18 @@ public class FM_Controller implements MouseListener, ActionListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		System.out.println("mouse pressed");
 		int size = model.getSquareSize();
 		for (int i = 0; i < 4; i++) {
-			Square[] current = model.getLeftPlayer();
+			Square[] current = model.getPlayer();
 			int currentX = current[i].getX();
 			int currentY = current[i].getY();
 			int mouseX = e.getX(); 
 			int mouseY = e.getY(); 
-			if (mouseX > currentX && mouseX < currentY + size && mouseY > currentX && mouseY < currentY + size) {
+			if (mouseX > currentX && mouseX < currentX + size && mouseY > currentY && mouseY < currentY + size) {
 				current[i].changeColor();
+				view.repaint();
+				System.out.println("changing color of square " + i);
 			}
 		}
 	}

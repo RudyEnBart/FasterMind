@@ -57,10 +57,7 @@ public class FM_View extends JPanel {
 				s.draw(g);
 			}
 		}
-		for (Square s : model.getLeftPlayer()) {
-			s.draw(g);
-		}
-		for (Square s : model.getRightPlayer()) {
+		for (Square s : model.getPlayer()) {
 			s.draw(g);
 		}
 		

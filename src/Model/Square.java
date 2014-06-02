@@ -19,7 +19,7 @@ public class Square {
 		_width = size;
 		_height = size;
 		_colorList.add(Color.GRAY);
-		_colorList.add(Color.BLACK);
+		_colorList.add(Color.CYAN);
 		_colorList.add(Color.WHITE);
 		_colorList.add(Color.RED);
 		_colorList.add(Color.ORANGE);
@@ -47,6 +47,7 @@ public class Square {
 	
 	public void changeColor() {
 		_color = _colorList.get(++_colorIndex);
+		System.out.println("changing color to " + _color.toString());
 	}
 	
 	public int getX() {
