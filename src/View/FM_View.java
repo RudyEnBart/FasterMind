@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Model.FM_Model;
+import Model.Square;
 
 public class FM_View extends JPanel {
 	private FM_Model model;
@@ -33,6 +34,8 @@ public class FM_View extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		
+		for (Square s : model.getSquareList()) {
+			s.draw(g);
+		}
 	}
 }
