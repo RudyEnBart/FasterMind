@@ -36,7 +36,7 @@ public class FM_Model {
 		}
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + _squareSize * 10, i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8*5), i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class FM_Model {
 		}
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
-				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + _squareSize * 20, i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
+				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + (_screenWidth/8*5) , i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
 	}

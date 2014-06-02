@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -23,11 +24,13 @@ public class FM_View extends JPanel {
 	
 	public void init() {
 		frame.setVisible(true);
+		frame.setMinimumSize(new Dimension(640,480)); //Sets minimum size
 		frame.setSize(getMaximumSize());
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		setBackground(Color.black);
+		
 	}
 	
 	@Override
@@ -36,6 +39,8 @@ public class FM_View extends JPanel {
 		super.paintComponent(g);
 		_screenWidth = frame.getWidth();
 		_screenHeight = frame.getHeight();
+		model.set_screenWidth(_screenWidth);
+		model.set_screenHeight(_screenHeight);
 		model.setSquareSize(_screenHeight / 14);
 		for (Square[] sArray : model.getSquareArray()) {
 			for (Square s : sArray) {
