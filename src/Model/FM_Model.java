@@ -37,9 +37,19 @@ public class FM_Model {
 				_rightPlayField[j][i] = new Square(j*(_squareSize + 5) + _squareSize * 10, i*(_squareSize + 5), _squareSize, _colorList.get(0)); 
 			}
 		}
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
+				if (i == 0) {
+					_leftPlayer[j] = new Square(j*(_squareSize + 5), _screenHeight - (_squareSize + 10), _squareSize, _colorList.get(0));
+				} else {
+					_leftPlayer[j] = new Square(j*(_squareSize + 5) + _squareSize * 10, _screenHeight - (_squareSize + 10), _squareSize, _colorList.get(0));
+				}
+			}
+		}
 	}
 	
 	public void drawSquares() {
+		
 	}
 	
 	public ArrayList<Color> getColorList() {
