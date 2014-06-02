@@ -1,8 +1,11 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,6 +17,7 @@ public class FM_View extends JPanel {
 	private JFrame frame;
 	private int _screenWidth;
 	private int _screenHeight;
+	public JButton button = new JButton("Submit");
 	
 	public FM_View(FM_Model model) {
 		this.model = model;
@@ -23,11 +27,15 @@ public class FM_View extends JPanel {
 	
 	public void init() {
 		frame.setVisible(true);
+		frame.setMinimumSize(new Dimension(640,480)); //Sets minimum size
 		frame.setSize(getMaximumSize());
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
+		
 		setBackground(Color.black);
+		
+		this.add(button);
 	}
 	
 	@Override
@@ -36,6 +44,8 @@ public class FM_View extends JPanel {
 		super.paintComponent(g);
 		_screenWidth = frame.getWidth();
 		_screenHeight = frame.getHeight();
+		model.set_screenWidth(_screenWidth);
+		model.set_screenHeight(_screenHeight);
 		model.setSquareSize(_screenHeight / 14);
 		for (Square[] sArray : model.getLeftPlayField()) {
 			for (Square s : sArray) {
@@ -53,5 +63,14 @@ public class FM_View extends JPanel {
 		for (Square s : model.getRightPlayer()) {
 			s.draw(g);
 		}
+		
+		int width = 150;
+		int height = 50;
+
+		button.setBounds(_screenWidth/2 - width/2, _screenHeight/8*7 , width, height);
+	}
+	
+	public void addButtonListener(ActionListener a){
+		button.addActionListener(a);
 	}
 }
