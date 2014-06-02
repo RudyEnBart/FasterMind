@@ -19,7 +19,6 @@ public class Square {
 		_width = size;
 		_height = size;
 		_colorList.add(Color.GRAY);
-		_colorList.add(Color.CYAN);
 		_colorList.add(Color.WHITE);
 		_colorList.add(Color.RED);
 		_colorList.add(Color.ORANGE);
@@ -27,6 +26,8 @@ public class Square {
 		_colorList.add(Color.GREEN);
 		_colorList.add(Color.BLUE);
 		_colorList.add(Color.MAGENTA);
+		_colorList.add(Color.CYAN);
+		_colorList.add(Color.BLACK);
 		_color = _colorList.get(0);
 		_colorIndex = 0;
 	}
@@ -36,7 +37,12 @@ public class Square {
 		_color = c;
 		_colorIndex = _colorList.indexOf(c);
 	}
-	
+
+	public Square(int x, int y, int size, int cI) {
+		this(x, y, size);
+		_colorIndex = cI;
+		_color = _colorList.get(_colorIndex);
+	}
 	
 	public void draw(Graphics g) {
 		Color temp = g.getColor();
@@ -46,7 +52,12 @@ public class Square {
 	}
 	
 	public void changeColor() {
-		_color = _colorList.get(++_colorIndex);
+		if (_colorIndex == _colorList.size()-2) {
+			_colorIndex = 0;
+			_color = _colorList.get(_colorIndex);
+		} else {
+			_color = _colorList.get(++_colorIndex);
+		}
 		System.out.println("changing color to " + _color.toString());
 	}
 	
@@ -70,6 +81,10 @@ public class Square {
 		return _color;
 	}
 	
+	public int getColorIndex() {
+		return _colorIndex;
+	}
+	
 	public void setX(int x) {
 		_posX = x;
 	}
@@ -81,6 +96,11 @@ public class Square {
 	public void setColor(Color c) {
 		_color = c;
 		_colorIndex = _colorList.indexOf(c);
+	}
+	
+	public void setColorIndex (int cI) {
+		_colorIndex = cI;
+		_color = _colorList.get(_colorIndex);
 	}
 	
 	public void setSize(int size) {

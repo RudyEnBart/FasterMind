@@ -60,11 +60,22 @@ public class FM_View extends JPanel {
 		for (Square s : model.getPlayer()) {
 			s.draw(g);
 		}
+		if (model.getCode() >= 0) {
+			for (Square s : model.getCodeArray()) {
+				s.draw(g);
+			}	
+		}
+		for (Square[] sArray : model.getResults()) {
+			for (Square s : sArray) {
+				s.draw(g);
+			}
+		}
 		
 		int width = 150;
 		int height = 50;
 
 		button.setBounds(_screenWidth/2 - width/2, _screenHeight/8*7 , width, height);
+		repaint();
 	}
 	
 	public void addButtonListener(ActionListener a){
