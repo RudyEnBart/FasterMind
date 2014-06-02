@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -15,6 +16,7 @@ public class FM_View extends JPanel {
 	private JFrame frame;
 	private int _screenWidth;
 	private int _screenHeight;
+	JButton button = new JButton("Submit");
 	
 	public FM_View(FM_Model model) {
 		this.model = model;
@@ -29,8 +31,10 @@ public class FM_View extends JPanel {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
+		
 		setBackground(Color.black);
 		
+		this.add(button);
 	}
 	
 	@Override
@@ -52,5 +56,10 @@ public class FM_View extends JPanel {
 				s.draw(g);
 			}
 		}
+		
+		int width = 150;
+		int height = 50;
+
+		button.setBounds(_screenWidth/2 - width/2, _screenHeight/8*7 , width, height);
 	}
 }
