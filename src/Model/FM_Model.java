@@ -25,6 +25,8 @@ public class FM_Model {
 	private int _currentTry;
 	private int _currentEnemyTry;
 	private int _enemyCode;
+	
+	private int _resultIndexI;
 
 	public FM_Model() {
 		init();
@@ -35,6 +37,7 @@ public class FM_Model {
 		_enemyCode = 0;
 		_currentTry = 0;
 		_currentEnemyTry = 0;
+		_resultIndexI = 0;
 		for (int i = 0; i < GRIDSIZE; i++) {
 			for (int j = 0; j < AMOUNTOFSQUARES; j++) {
 				_leftPlayField[j][i] = new Square(j*(_squareSize + 5) + ((_screenWidth/4)-(_squareSize*2))-10 , i*(_squareSize + 5), _squareSize); 
@@ -173,8 +176,8 @@ public class FM_Model {
 	//second entry in the array is correct color but incorrect position
 	private void updateResult(int[] correct) {
 		int resultColorIndex;
-		for (int i = 0; i < AMOUNTOFSQUARES/2; i++) {
-			for (int j = 0; j < AMOUNTOFSQUARES/2; j++) {
+		for (int i = 0; i < (AMOUNTOFSQUARES/2); i++) {
+			for (int j = 0; j < (AMOUNTOFSQUARES/2); j++) {
 				if (correct[0] > 0) {
 					resultColorIndex = 2;
 					correct[0]--;
@@ -184,9 +187,12 @@ public class FM_Model {
 				} else {
 					resultColorIndex = 0;
 				}
-				_results[j][i] = new Square(j*(_squareSize/2 + 5) + ((_screenWidth/4)-(_squareSize*2))-10 + _squareSize*4 + 25 , i*(_squareSize/2 + 5), _squareSize/2, resultColorIndex);
+				System.out.println(_currentTry);
+				_results[j][_resultIndexI] = new Square(j*(_squareSize/2 + 5) + ((_screenWidth/4)-(_squareSize*2))-10 + _squareSize*4 + 25 , i*(_squareSize/2 + 3) + (_currentTry * (_squareSize+5)), _squareSize/2, resultColorIndex);
 			}
+			_resultIndexI++;
 		}
+		//_resultIndexI+=1;
 		//TODO show small squares of correct and almost correct colors and positions
 	}
 
