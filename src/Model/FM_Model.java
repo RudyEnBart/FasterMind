@@ -1,9 +1,11 @@
 package Model;
 
-import java.awt.Color;
 
 
-public class FM_Model {
+public class FM_Model implements Comparable{
+	public static final int ENEMY = -1;
+	public static final int ME = 0;
+	
 	private Square[][] _leftPlayField = new Square[4][10];
 	private Square[][] _rightPlayField = new Square[4][10];
 	private Square[] _player = new Square[4];
@@ -12,11 +14,11 @@ public class FM_Model {
 	private Square[][] _results = new Square[2][20];
 	private Square[][] _enemyResults = new Square[2][20];
 
-	private final int GRIDSIZE = 10;
-	private final int AMOUNTOFSQUARES = 4;
-	private final int CODE = 0;
-	private final int LEFT = 1;
-	private final int RIGHT = 2;
+	public final int GRIDSIZE = 10;
+	public final int AMOUNTOFSQUARES = 4;
+	public final int CODE = 0;
+	public final int LEFT = 1;
+	public final int RIGHT = 2;
 
 	private int _squareSize = 50;
 	private int _screenWidth;
@@ -119,13 +121,20 @@ public class FM_Model {
 		System.out.println("setting code to: " + code);
 	}
 
-	public void checkCode(int code) {
+	public void setEnemyCode(int code) {
+		this._enemyCode = code;
+		System.out.println("setting enemy code to: " + code);
+	}
+
+	public boolean checkCode(int code) {
 		if (_enemyCode == code) {
-			done(true);
+			done(true, ME);
+			return true;
 		} else {
 			int[] correct = checkForCorrectPosition(code);
 			updateResult(correct);
 			updateField(LEFT, code);
+			return false;
 		}
 	}
 
@@ -196,13 +205,21 @@ public class FM_Model {
 		//TODO show small squares of correct and almost correct colors and positions
 	}
 
-	public void done(boolean success) {
+	public void done(boolean success, int player) {
 		//TODO code for being finished
 		if (success) {
-
+			if (player == ENEMY) {
+				
+			} else {
+				
+			}
 		} else {
-
+			
 		}
+	}
+	
+	public void done(boolean success) {
+		done(success, 0);
 	}
 
 	public void resetPlayer() {
@@ -253,5 +270,11 @@ public class FM_Model {
 
 	public Square[][] getResults() {
 		return _results;
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		FM_Model other = (FM_Model) arg0;
+		return (this._code < other._code) ? -1: (this._code > other._code) ? 1:0;
 	}
 }

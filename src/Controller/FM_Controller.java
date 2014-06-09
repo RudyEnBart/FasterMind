@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
@@ -15,10 +16,12 @@ public class FM_Controller implements MouseListener, ActionListener{
 	private FM_Model model;
 	private FM_View view;
 	private boolean easyMode = true;
+	private FM_NetworkController network;
 
 	public FM_Controller(FM_Model model, FM_View view) {
 		this.model = model;
 		this.view = view;
+		network = new FM_NetworkController(model);
 		view.addMouseListener(this);
 		view.addButtonListener(this);
 	}
@@ -85,9 +88,22 @@ public class FM_Controller implements MouseListener, ActionListener{
 			value /= 10;
 			
 			if (model.getCode() >= 0) {
-				model.checkCode(value);
+				if (model.checkCode(value)) {
+					try {
+						network.sendInfoToServer(network.I_WON);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			} else {
 				model.setCode(value);
+				try {
+					network.sendInfoToServer(value);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 		model.resetPlayer();
